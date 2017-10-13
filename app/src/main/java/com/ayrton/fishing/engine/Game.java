@@ -9,6 +9,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 
+import com.ayrton.fishing.R;
 import com.ayrton.fishing.engine.elements.util.Cores;
 import com.ayrton.fishing.engine.elements.util.Tela;
 
@@ -23,6 +24,7 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
     private SurfaceHolder surfaceHolder;
     private Tela tela;
     private int[][] elementos;
+    private Bitmap rock;
 
     public Game(Context context) {
         super(context);
@@ -31,6 +33,12 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
         tela = new Tela(this.getContext());
         setOnTouchListener(this);
         elementos = new int[16][9];
+        Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.rocha);
+        rock = Bitmap.createScaledBitmap(b, tela.getLargura()/9, tela.getAltura()/16, false);
+
+
+        elementos[0][0] = 1;
+        elementos[10][4] = 1;
     }
 
 
@@ -52,7 +60,15 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
             }
             Canvas canvas = this.surfaceHolder.lockCanvas();
 
+
             canvas.drawRect(0, 0, tela.getLargura(), tela.getAltura(), Cores.getBlue());
+
+            for (int i = 0; i < elementos.length; i++)
+                for (int j = 0; j < elementos[i].length; j++) {
+                    switch (elementos[i][j]){
+                        case 1: canvas.drawBitmap(rock, j * (tela.getLargura()/9), i * (tela.getAltura()/16), null);
+                    }
+                }
 
             this.surfaceHolder.unlockCanvasAndPost(canvas);
         }
