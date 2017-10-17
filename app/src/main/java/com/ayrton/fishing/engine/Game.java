@@ -10,10 +10,13 @@ import android.view.SurfaceView;
 import android.view.View;
 
 import com.ayrton.fishing.R;
+import com.ayrton.fishing.engine.elements.Mapa;
+import com.ayrton.fishing.engine.elements.Recursos;
 import com.ayrton.fishing.engine.elements.util.Cores;
 import com.ayrton.fishing.engine.elements.util.Tela;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Created by ayrton on 13/10/17.
@@ -23,22 +26,18 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
     private boolean started;
     private SurfaceHolder surfaceHolder;
     private Tela tela;
-    private int[][] elementos;
-    private Bitmap rock;
+    private Mapa mapa;
+
 
     public Game(Context context) {
         super(context);
         started = false;
         surfaceHolder = getHolder();
-        tela = new Tela(this.getContext());
+        tela = new Tela(this.getContext(), 9, 16);
         setOnTouchListener(this);
-        elementos = new int[16][9];
-        Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.rocha);
-        rock = Bitmap.createScaledBitmap(b, tela.getLargura()/9, tela.getAltura()/16, false);
+        Recursos recursos = new Recursos(getResources(), tela);
+        this.mapa = new Mapa(tela, recursos);
 
-
-        elementos[0][0] = 1;
-        elementos[10][4] = 1;
     }
 
 
@@ -62,13 +61,8 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
 
 
             canvas.drawRect(0, 0, tela.getLargura(), tela.getAltura(), Cores.getBlue());
+            this.mapa.paint(canvas);
 
-            for (int i = 0; i < elementos.length; i++)
-                for (int j = 0; j < elementos[i].length; j++) {
-                    switch (elementos[i][j]){
-                        case 1: canvas.drawBitmap(rock, j * (tela.getLargura()/9), i * (tela.getAltura()/16), null);
-                    }
-                }
 
             this.surfaceHolder.unlockCanvasAndPost(canvas);
         }
