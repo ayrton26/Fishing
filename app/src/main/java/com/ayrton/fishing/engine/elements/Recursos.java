@@ -14,6 +14,7 @@ import com.ayrton.fishing.engine.elements.util.Tela;
 public class Recursos {
     public static final int ROCK_ID = 1;
     public static final int ISLAND_ID = 2;
+    public static final int BOAT_ID = 3;
 
     private Bitmap rock;
     private Bitmap island;
@@ -25,6 +26,7 @@ public class Recursos {
         rock = Bitmap.createScaledBitmap(b, tela.getLarguraQuandrante(), tela.getAlturaQuadrante(), false);
         b = BitmapFactory.decodeResource(resources, R.drawable.ilha);
         island = Bitmap.createScaledBitmap(b, tela.getLarguraQuandrante()*3, tela.getAlturaQuadrante()*3, false);
+
     }
 
     public Bitmap getRock() {
@@ -33,5 +35,9 @@ public class Recursos {
 
     public Bitmap getIsland() {
         return island;
+    }
+
+    public Resources getResources() {
+        return resources;
     }
 }

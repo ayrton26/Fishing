@@ -34,10 +34,25 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
         started = false;
         surfaceHolder = getHolder();
         tela = new Tela(this.getContext(), 9, 16);
-        setOnTouchListener(this);
+
         Recursos recursos = new Recursos(getResources(), tela);
         this.mapa = new Mapa(tela, recursos);
 
+        setOnTouchListener(new OnSwipeTouchListener(context) {
+            public void onSwipeTop() {
+                mapa.onSwipeTop();
+            }
+            public void onSwipeRight() {
+                mapa.onSwipeRight();
+            }
+            public void onSwipeLeft() {
+                mapa.onSwipeLeft();
+            }
+            public void onSwipeBottom() {
+                mapa.onSwipeBottom();
+            }
+
+        });
     }
 
 
