@@ -7,7 +7,7 @@ import android.graphics.Typeface;
  * Created by ayrton on 23/08/17.
  */
 
-public class Cores {
+public class Colors {
     public static Paint getRed(){
         Paint paint = new Paint();
         paint.setColor(0x22FF0000);

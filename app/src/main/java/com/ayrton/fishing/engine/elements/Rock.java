@@ -6,7 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 
 import com.ayrton.fishing.R;
-import com.ayrton.fishing.engine.elements.util.Tela;
+import com.ayrton.fishing.engine.elements.util.Screen;
 
 /**
  * Created by ayrton on 25/10/17.
@@ -14,10 +14,10 @@ import com.ayrton.fishing.engine.elements.util.Tela;
 
 public class Rock extends Viewable {
 
-    public Rock(int x, int y, Resources resources, Tela tela){
+    public Rock(int x, int y, Resources resources, Screen screen){
         super(x, y);
         Bitmap b = BitmapFactory.decodeResource(resources, R.drawable.rocha);
-        b = Bitmap.createScaledBitmap(b, tela.getLarguraQuandrante(), tela.getAlturaQuadrante(), false);
+        b = Bitmap.createScaledBitmap(b, screen.getLarguraQuandrante(), screen.getAlturaQuadrante(), false);
         this.addSprite(b);
     }
 

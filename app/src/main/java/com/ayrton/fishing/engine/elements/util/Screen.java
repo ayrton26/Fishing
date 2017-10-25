@@ -9,12 +9,12 @@ import android.view.WindowManager;
  * Created by ayrton on 23/08/17.
  */
 
-public class Tela {
+public class Screen {
     private DisplayMetrics displayMetrics;
     private int quantidadeQuadranteHorizontal;
     private int quantidadeQuadranteVertical;
 
-    public Tela(Context context, int quantidadeQuadranteHorizontal, int quantidadeQuadranteVertical){
+    public Screen(Context context, int quantidadeQuadranteHorizontal, int quantidadeQuadranteVertical){
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         Display d = wm.getDefaultDisplay();
         this.displayMetrics = new DisplayMetrics();

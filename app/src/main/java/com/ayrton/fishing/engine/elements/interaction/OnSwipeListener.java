@@ -1,8 +1,5 @@
 package com.ayrton.fishing.engine.elements.interaction;
 
-import com.ayrton.fishing.engine.elements.Direcao;
-import com.ayrton.fishing.engine.elements.Recursos;
-
 /**
  * Created by ayrton on 25/10/17.
  */

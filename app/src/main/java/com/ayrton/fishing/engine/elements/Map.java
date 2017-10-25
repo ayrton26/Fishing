@@ -4,8 +4,7 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 
 import com.ayrton.fishing.engine.elements.interaction.OnSwipeListener;
-import com.ayrton.fishing.engine.elements.interaction.OnSwipeTouchListener;
-import com.ayrton.fishing.engine.elements.util.Tela;
+import com.ayrton.fishing.engine.elements.util.Screen;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,20 +14,20 @@ import java.util.List;
  */
 
 public class Map {
-    private Tela tela;
+    private Screen screen;
     private Resources resources;
     private List<Element> elements;
     private List<OnSwipeListener> swipeListeners;
 
-    public Map(Tela tela, Resources resources){
-        this.tela = tela;
+    public Map(Screen screen, Resources resources){
+        this.screen = screen;
         this.resources = resources;
         this.elements = new ArrayList<>();
         this.swipeListeners = new ArrayList<>();
-        this.elements.add(new Rock(tela.quadranteX2Pixels(0), tela.quadranteY2Pixels(0), resources, tela));
-        this.elements.add(new Rock(tela.quadranteX2Pixels(4), tela.quadranteY2Pixels(10), resources, tela));
-        this.elements.add(new Island(tela.quadranteX2Pixels(5), tela.quadranteY2Pixels(5), resources, tela));
-        Boat boat = new Boat(tela.quadranteX2Pixels(3), tela.quadranteY2Pixels(3), resources, tela);
+        this.elements.add(new Rock(screen.quadranteX2Pixels(0), screen.quadranteY2Pixels(0), resources, screen));
+        this.elements.add(new Rock(screen.quadranteX2Pixels(4), screen.quadranteY2Pixels(10), resources, screen));
+        this.elements.add(new Island(screen.quadranteX2Pixels(5), screen.quadranteY2Pixels(5), resources, screen));
+        Boat boat = new Boat(screen.quadranteX2Pixels(3), screen.quadranteY2Pixels(3), resources, screen);
         this.elements.add(boat);
         this.swipeListeners.add(boat);
     }
