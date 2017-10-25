@@ -1,4 +1,4 @@
-package com.ayrton.fishing.engine;
+package com.ayrton.fishing.engine.elements.interaction;
 import android.content.Context;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;

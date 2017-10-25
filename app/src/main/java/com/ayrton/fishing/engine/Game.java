@@ -10,13 +10,12 @@ import android.view.SurfaceView;
 import android.view.View;
 
 import com.ayrton.fishing.R;
-import com.ayrton.fishing.engine.elements.Mapa;
-import com.ayrton.fishing.engine.elements.Recursos;
+import com.ayrton.fishing.engine.elements.Map;
+import com.ayrton.fishing.engine.elements.interaction.OnSwipeTouchListener;
 import com.ayrton.fishing.engine.elements.util.Cores;
 import com.ayrton.fishing.engine.elements.util.Tela;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 /**
  * Created by ayrton on 13/10/17.
@@ -26,7 +25,7 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
     private boolean started;
     private SurfaceHolder surfaceHolder;
     private Tela tela;
-    private Mapa mapa;
+    private Map map;
 
 
     public Game(Context context) {
@@ -35,21 +34,20 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
         surfaceHolder = getHolder();
         tela = new Tela(this.getContext(), 9, 16);
 
-        Recursos recursos = new Recursos(getResources(), tela);
-        this.mapa = new Mapa(tela, recursos);
+        this.map = new Map(tela, getResources());
 
         setOnTouchListener(new OnSwipeTouchListener(context) {
             public void onSwipeTop() {
-                mapa.onSwipeTop();
+                map.onSwipeTop();
             }
             public void onSwipeRight() {
-                mapa.onSwipeRight();
+                map.onSwipeRight();
             }
             public void onSwipeLeft() {
-                mapa.onSwipeLeft();
+                map.onSwipeLeft();
             }
             public void onSwipeBottom() {
-                mapa.onSwipeBottom();
+                map.onSwipeBottom();
             }
 
         });
@@ -76,7 +74,7 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
 
 
             canvas.drawRect(0, 0, tela.getLargura(), tela.getAltura(), Cores.getBlue());
-            this.mapa.paint(canvas);
+            this.map.paint(canvas);
 
 
             this.surfaceHolder.unlockCanvasAndPost(canvas);

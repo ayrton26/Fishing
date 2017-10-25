@@ -44,4 +44,11 @@ public class Tela {
     public int getAlturaQuadrante(){
         return getAltura()/getQuantidadeQuadranteVertical();
     }
+
+    public int quadranteX2Pixels(int x){
+        return x * getLarguraQuandrante();
+    }
+    public int quadranteY2Pixels(int y){
+        return y * getAlturaQuadrante();
+    }
 }
