@@ -43,22 +43,33 @@ public class Map {
 
     public void onSwipeTop() {
         for (OnSwipeListener e : swipeListeners){
-            e.onSwipeTop();
+            if (!e.verifyCollision(elements, Direction.TOP)){
+                e.onSwipeTop();
+            }
         }
     }
     public void onSwipeRight() {
         for (OnSwipeListener e : swipeListeners){
-            e.onSwipeRight();
+            if (!e.verifyCollision(elements, Direction.RIGHT)){
+                e.onSwipeRight();
+            }
+
         }
     }
     public void onSwipeLeft() {
         for (OnSwipeListener e : swipeListeners){
-            e.onSwipeLeft();
+            if (!e.verifyCollision(elements, Direction.LEFT)){
+                e.onSwipeLeft();
+            }
+
         }
     }
     public void onSwipeBottom() {
         for (OnSwipeListener e : swipeListeners){
-            e.onSwipeBottom();
+            if (!e.verifyCollision(elements, Direction.BOTTOM)){
+                e.onSwipeBottom();
+            }
+
         }
     }
 }
