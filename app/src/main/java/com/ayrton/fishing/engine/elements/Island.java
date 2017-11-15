@@ -15,9 +15,9 @@ import com.ayrton.fishing.engine.elements.util.Screen;
 public class Island extends Viewable {
 
     public Island(int x, int y, Resources resources, Screen screen){
-        super(x, y);
+        super(x, y, 2, 2);
         Bitmap b = BitmapFactory.decodeResource(resources, R.drawable.ilha);
-        b = Bitmap.createScaledBitmap(b, 2 * screen.getLarguraQuandrante(), 2 * screen.getAlturaQuadrante(), false);
+        b = Bitmap.createScaledBitmap(b, getWidth() * screen.getLarguraQuandrante(), getHeight() * screen.getAlturaQuadrante(), false);
         this.addSprite(b);
     }
 

@@ -22,7 +22,7 @@ public class Boat extends Viewable implements OnSwipeListener {
     private Direction direction;
 
     public Boat(int x, int y, Resources resources, Screen screen){
-        super(x, y);
+        super(x, y, 1, 1);
         this.screen = screen;
         Bitmap b = BitmapFactory.decodeResource(resources, R.drawable.barco_d);
         b = Bitmap.createScaledBitmap(b, screen.getLarguraQuandrante(), screen.getAlturaQuadrante(), false);
@@ -56,22 +56,28 @@ public class Boat extends Viewable implements OnSwipeListener {
                 Log.d("Verify Collision", "e.getY(): "+ e.getY());
                 switch (direction){
                     case RIGHT:
-                        if (this.getX() + screen.getLarguraQuandrante() == e.getX() && this.getY() == e.getY()){
+                        if (this.getX() + screen.getLarguraQuandrante() == e.getX() &&
+                                (this.getY() >= e.getY() &&
+                                        this.getY() < e.getY() + (e.getHeight() * screen.getAlturaQuadrante()) )){
                             return true;
                         }
                         break;
                     case LEFT:
-                        if (this.getX() - screen.getLarguraQuandrante() == e.getX() && this.getY() == e.getY()){
+                        if (this.getX() == (e.getX() + (e.getWidth() * screen.getLarguraQuandrante())) &&
+                                (this.getY() >= e.getY() &&
+                                        this.getY() < e.getY() + (e.getHeight() * screen.getAlturaQuadrante()) )){
                             return true;
                         }
                         break;
                     case TOP:
-                        if (this.getX() == e.getX() && this.getY() - screen.getAlturaQuadrante() == e.getY()){
+                        if (this.getX() >= e.getX() && this.getX() < e.getX() + (e.getWidth() * screen.getLarguraQuandrante()) &&
+                                this.getY() == (e.getY() + (e.getHeight() *screen.getAlturaQuadrante()))){
                             return true;
                         }
                         break;
                     default:
-                        if (this.getX() == e.getX() && this.getY() + screen.getAlturaQuadrante() == e.getY()){
+                        if (this.getX() >= e.getX() && this.getX() < e.getX() + (e.getWidth() * screen.getLarguraQuandrante()) &&
+                                 (this.getY() + (this.getHeight() * screen.getAlturaQuadrante() )) == e.getY() ){
                             return true;
                         }
                 }

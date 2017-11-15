@@ -14,8 +14,8 @@ public abstract class Viewable extends Element {
 
     private List<Bitmap> sprites;
 
-    public Viewable(int x, int y){
-        super(x, y);
+    public Viewable(int x, int y, int width, int height){
+        super(x, y, width, height);
         sprites = new ArrayList<>();
     }
 

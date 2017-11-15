@@ -15,7 +15,7 @@ import com.ayrton.fishing.engine.elements.util.Screen;
 public class Rock extends Viewable {
 
     public Rock(int x, int y, Resources resources, Screen screen){
-        super(x, y);
+        super(x, y, 1, 1);
         Bitmap b = BitmapFactory.decodeResource(resources, R.drawable.rocha);
         b = Bitmap.createScaledBitmap(b, screen.getLarguraQuandrante(), screen.getAlturaQuadrante(), false);
         this.addSprite(b);

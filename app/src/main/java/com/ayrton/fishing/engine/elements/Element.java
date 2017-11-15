@@ -7,10 +7,14 @@ package com.ayrton.fishing.engine.elements;
 public class Element {
     private int x;
     private int y;
+    private int width;
+    private int height;
 
-    public Element(int x, int y){
+    public Element(int x, int y, int width, int height){
         this.x = x;
         this.y = y;
+        this.width = width;
+        this.height = height;
     }
 
     public int getX() {
@@ -27,5 +31,13 @@ public class Element {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 }
