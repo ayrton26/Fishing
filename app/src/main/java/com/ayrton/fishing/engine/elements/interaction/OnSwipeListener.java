@@ -1,9 +1,8 @@
 package com.ayrton.fishing.engine.elements.interaction;
 
 import com.ayrton.fishing.engine.elements.Direction;
-import com.ayrton.fishing.engine.elements.Element;
+import com.ayrton.fishing.engine.elements.Viewable;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,7 +11,7 @@ import java.util.List;
 
 public interface OnSwipeListener {
 
-    public boolean verifyCollision(List<Element> elements, Direction direction);
+    public boolean verifyCollision(List<Viewable> elements, Direction direction);
     public void onSwipeTop();
     public void onSwipeRight();
     public void onSwipeLeft();

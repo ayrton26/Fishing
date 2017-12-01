@@ -45,7 +45,7 @@ public class Boat extends Viewable implements OnSwipeListener {
     }
 
     @Override
-    public boolean verifyCollision(List<Element> elements, Direction direction){
+    public boolean verifyCollision(List<Viewable> elements, Direction direction){
         for (Element e : elements){
             if (e != this && e instanceof Viewable){
                 Log.d("Verify Collision", "This.getX(): " + this.getX());
@@ -56,34 +56,51 @@ public class Boat extends Viewable implements OnSwipeListener {
                 Log.d("Verify Collision", "e.getY(): "+ e.getY());
                 switch (direction){
                     case RIGHT:
-                        if (this.getX() + screen.getLarguraQuandrante() == e.getX() &&
-                                (this.getY() >= e.getY() &&
-                                        this.getY() < e.getY() + (e.getHeight() * screen.getAlturaQuadrante()) )){
+                        if (verifyRight(e)){
                             return true;
                         }
                         break;
                     case LEFT:
-                        if (this.getX() == (e.getX() + (e.getWidth() * screen.getLarguraQuandrante())) &&
-                                (this.getY() >= e.getY() &&
-                                        this.getY() < e.getY() + (e.getHeight() * screen.getAlturaQuadrante()) )){
+                        if (verifyLeft(e)){
                             return true;
                         }
                         break;
                     case TOP:
-                        if (this.getX() >= e.getX() && this.getX() < e.getX() + (e.getWidth() * screen.getLarguraQuandrante()) &&
-                                this.getY() == (e.getY() + (e.getHeight() *screen.getAlturaQuadrante()))){
+                        if (verifyTop(e)){
                             return true;
                         }
                         break;
                     default:
-                        if (this.getX() >= e.getX() && this.getX() < e.getX() + (e.getWidth() * screen.getLarguraQuandrante()) &&
-                                 (this.getY() + (this.getHeight() * screen.getAlturaQuadrante() )) == e.getY() ){
+                        if (verifyBottom(e)){
                             return true;
                         }
                 }
             }
         }
         return false;
+    }
+
+    private boolean verifyRight(Element e){
+         return this.getX() + screen.getLarguraQuandrante() == e.getX() &&
+                (this.getY() >= e.getY() &&
+                        this.getY() < e.getY() + (e.getHeight() * screen.getAlturaQuadrante()) ) ||
+                 this.getX()+ screen.getLarguraQuandrante() == screen.getLargura();
+    }
+    private boolean verifyLeft (Element e){
+        return this.getX() == (e.getX() + (e.getWidth() * screen.getLarguraQuandrante())) &&
+                (this.getY() >= e.getY() &&
+                        this.getY() < e.getY() + (e.getHeight() * screen.getAlturaQuadrante()) ) ||
+                this.getX() == 0;
+    }
+    private boolean verifyTop (Element e){
+        return this.getX() >= e.getX() && this.getX() < e.getX() + (e.getWidth() * screen.getLarguraQuandrante()) &&
+                this.getY() == (e.getY() + (e.getHeight() *screen.getAlturaQuadrante())) ||
+                this.getY() == 0;
+    }
+    private boolean verifyBottom (Element e){
+        return this.getX() >= e.getX() && this.getX() < e.getX() + (e.getWidth() * screen.getLarguraQuandrante()) &&
+                (this.getY() + (this.getHeight() * screen.getAlturaQuadrante() )) == e.getY() ||
+                this.getY() + screen.getAlturaQuadrante() == screen.getAltura();
     }
 
     @Override

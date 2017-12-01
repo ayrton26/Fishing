@@ -44,6 +44,9 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
             public void onSwipeBottom() {
                 map.onSwipeBottom();
             }
+            public void onDoubleT(){
+                map.onDoubleTap();
+            }
 
         });
     }
@@ -73,7 +76,10 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
 
 
             this.surfaceHolder.unlockCanvasAndPost(canvas);
+
+
         }
+
     }
 
     public void end() {
