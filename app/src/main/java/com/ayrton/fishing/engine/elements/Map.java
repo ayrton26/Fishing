@@ -1,9 +1,12 @@
 package com.ayrton.fishing.engine.elements;
 
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.util.Log;
 
+import com.ayrton.fishing.R;
 import com.ayrton.fishing.engine.elements.interaction.OnSwipeListener;
 import com.ayrton.fishing.engine.elements.util.Screen;
 
@@ -21,6 +24,7 @@ public class Map {
     private List<Element> elements;
     private List<OnSwipeListener> swipeListeners;
     private Boat boat;
+    private Bitmap mask;
 
     public Map(Screen screen, Resources resources){
         this.screen = screen;
@@ -36,13 +40,20 @@ public class Map {
         this.elements.add(new Fish(screen.quadranteX2Pixels(1), screen.quadranteY2Pixels(0)));
         this.viewables.add(boat);
         this.swipeListeners.add(boat);
+        Bitmap b = BitmapFactory.decodeResource(resources, R.drawable.mask_collectable);
+        mask = Bitmap.createScaledBitmap(b, screen.getLarguraQuandrante(), screen.getAlturaQuadrante(), false);
+
     }
 
     public void paint(Canvas canvas){
+        for (Element e : elements){
+            canvas.drawBitmap(this.mask, e.getX(), e.getY(), null);
+        }
         for (Viewable v : viewables){
             v.paint(canvas);
 
         }
+
     }
 
     public void onSwipeTop() {
