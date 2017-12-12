@@ -10,6 +10,7 @@ import com.ayrton.fishing.R;
 import com.ayrton.fishing.engine.elements.interaction.OnSwipeListener;
 import com.ayrton.fishing.engine.elements.util.Screen;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,9 +21,11 @@ public class Boat extends Viewable implements OnSwipeListener {
     private Screen screen;
 
     private Direction direction;
+    private List<Fishable> fishables;
 
     public Boat(int x, int y, Resources resources, Screen screen){
         super(x, y, 1, 1);
+        this.fishables = new ArrayList<>();
         this.screen = screen;
         Bitmap b = BitmapFactory.decodeResource(resources, R.drawable.barco_d);
         b = Bitmap.createScaledBitmap(b, screen.getLarguraQuandrante(), screen.getAlturaQuadrante(), false);
@@ -125,5 +128,20 @@ public class Boat extends Viewable implements OnSwipeListener {
     public void onSwipeBottom() {
         setY(getY() + screen.getAlturaQuadrante());
         direction = Direction.BOTTOM;
+    }
+
+    public void addFishable(Fishable fishable){
+        this.fishables.add(fishable);
+    }
+
+    public int getValue(){
+        int value = 0;
+        for (Fishable e : fishables){
+            value += e.getValor();
+        }
+        return value;
+    }
+    public List<Fishable> getFishables(){
+        return  this.fishables;
     }
 }

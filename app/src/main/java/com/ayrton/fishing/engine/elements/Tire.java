@@ -8,13 +8,14 @@ import com.ayrton.fishing.R;
 import com.ayrton.fishing.engine.elements.util.Screen;
 
 /**
- * Created by ayrton on 01/12/17.
+ * Created by ayrton on 12/12/17.
  */
 
-class Fish extends Fishable {
-    public Fish(int x, int y , Resources resources, Screen screen) {
-        super(x, y, 2);
-        Bitmap b = BitmapFactory.decodeResource(resources, R.drawable.fish);
+public class Tire extends Fishable {
+    public Tire(int x, int y, Resources resources, Screen screen){
+        super(x, y, -1);
+
+        Bitmap b = BitmapFactory.decodeResource(resources, R.drawable.pneu);
         b = Bitmap.createScaledBitmap(b, screen.getLarguraQuandrante(), screen.getAlturaQuadrante(), false);
         this.setSprite(b);
     }
